@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Primary Meta Tags -->
-  <meta name="title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking">
+  <meta name="title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
   <meta name="description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8xH100 node.">
   <meta name="keywords" content="context parallelism, long sequences, Transformers, activation memory, distributed training, attention, Ring Attention, Ulysses, memory efficiency, large language models">
   <meta name="author" content="Ravi Ghadia, Maksim Abraham, Sergei Vorobyov, Max Ryabinin">
@@ -15,7 +15,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Untied Ulysses">
-  <meta property="og:title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking">
+  <meta property="og:title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
   <meta property="og:description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8xH100 node.">
   <meta property="og:url" content="https://rghadia.github.io/untied_ulysses_proj">
   <meta property="og:image" content="https://rghadia.github.io/untied_ulysses_proj/static/images/main_figure.png">
@@ -30,19 +30,19 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking">
+  <meta name="twitter:title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
   <meta name="twitter:description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8xH100 node.">
   <meta name="twitter:image" content="https://rghadia.github.io/untied_ulysses_proj/static/images/main_figure.png">
   <meta name="twitter:image:alt" content="Untied Ulysses - Main Figure">
 
   <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking">
+  <meta name="citation_title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
   <meta name="citation_author" content="Ghadia, Ravi">
   <meta name="citation_author" content="Abraham, Maksim">
   <meta name="citation_author" content="Vorobyov, Sergei">
   <meta name="citation_author" content="Ryabinin, Max">
-  <meta name="citation_publication_date" content="2025">
-  <meta name="citation_conference_title" content="ICML 2025">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="ArXiv 2026">
   
   <!-- Additional SEO -->
   <meta name="theme-color" content="#2563eb">
@@ -56,7 +56,7 @@
   <link rel="preconnect" href="https://ajax.googleapis.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-  <title>Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking</title>
+  <title>Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking</title>
   
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
@@ -95,7 +95,7 @@
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking",
+    "headline": "Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking",
     "description": "Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8xH100 node.",
     "author": [
       {
@@ -115,15 +115,15 @@
         "name": "Max Ryabinin"
       }
     ],
-    "datePublished": "2025",
+    "datePublished": "2026",
     "publisher": {
       "@type": "Organization",
-      "name": "ICML 2025"
+      "name": "ArXiv 2026"
     },
     "url": "https://rghadia.github.io/untied_ulysses_proj",
     "image": "https://rghadia.github.io/untied_ulysses_proj/static/images/main_figure.png",
     "keywords": ["context parallelism", "long sequences", "Transformers", "activation memory", "distributed training"],
-    "abstract": "Efficiently processing long sequences with Transformer models usually requires splitting the computations across accelerators via context parallelism. The dominant approaches in this family of methods, such as Ring Attention or DeepSpeed Ulysses, enable scaling over the context dimension but do not focus on memory efficiency, which limits the sequence lengths they can support. More advanced techniques, such as Fully Pipelined Distributed Transformer or activation offloading, can further extend the possible context length at the cost of training throughput. In this paper, we present Untied Ulysses, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level. This technique significantly reduces the activation memory usage of self-attention, breaking the activation memory barrier and unlocking much longer context lengths. Our approach lowers the peak activation memory usage in the attention layer by as much as 82.5% for 70B Transformers, while matching previous context parallelism techniques in terms of training speed. Untied Ulysses can support maximum context lengths of up to 5M tokens for training 8B models on a single 8xH100 node, improving upon prior methods by 25%.",
+    "abstract": "Efficiently processing long sequences with Transformer models usually requires splitting the computations across accelerators via context parallelism. The dominant approaches in this family of methods, such as Ring Attention or DeepSpeed Ulysses, enable scaling over the context dimension but do not focus on memory efficiency, which limits the sequence lengths they can support. More advanced techniques, such as Fully Pipelined Distributed Transformer or activation offloading, can further extend the possible context length at the cost of training throughput. In this paper, we present Upipe, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level. This technique significantly reduces the activation memory usage of self-attention, breaking the activation memory barrier and unlocking much longer context lengths. Our approach lowers the peak activation memory usage in the attention layer by as much as 82.5% for 70B Transformers, while matching previous context parallelism techniques in terms of training speed. Untied Ulysses can support maximum context lengths of up to 5M tokens for training 8B models on a single 8xH100 node, improving upon prior methods by 25%.",
     "isAccessibleForFree": true
   }
   </script>
@@ -141,7 +141,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking</h1>
+            <h1 class="title is-1 publication-title">Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="#" target="_blank">Ravi Ghadia</a>,</span>
@@ -155,7 +155,7 @@
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block">ICML 2025</span>
+              <span class="author-block">ArXiv 2026</span>
             </div>
 
             <div class="column has-text-centered">
@@ -201,19 +201,6 @@
 </section>
 
 
-<!-- Main Figure -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="static/images/main_figure.png" alt="Untied Ulysses main figure: (a) DeepSpeed Ulysses communication and attention pattern showing head-parallel All-to-All operations, and (b) Untied Ulysses with memory-efficient head-level chunking that reuses QKV and All-to-All buffers to dramatically reduce activation memory." style="width: 100%; border-radius: 12px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);">
-      <h2 class="subtitle has-text-centered" style="margin-top: 1.5rem;">
-        <b>Figure:</b> (a) DeepSpeed Ulysses performs All-to-All communication followed by full multi-head attention. (b) <b>Untied Ulysses</b> processes attention heads in fine-grained chunks, reusing QKV and communication buffers to drastically reduce peak activation memory.
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End main figure -->
-
 <!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
@@ -225,10 +212,10 @@
             Efficiently processing long sequences with Transformer models usually requires splitting the computations across accelerators via context parallelism.
             The dominant approaches in this family of methods, such as Ring Attention or DeepSpeed Ulysses, enable scaling over the context dimension but do not focus on memory efficiency, which limits the sequence lengths they can support.
             More advanced techniques, such as Fully Pipelined Distributed Transformer or activation offloading, can further extend the possible context length at the cost of training throughput.
-            In this paper, we present <b>Untied Ulysses</b>, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level.
+            In this paper, we present <b>Upipe</b>, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level.
             This technique significantly reduces the activation memory usage of self-attention, breaking the activation memory barrier and unlocking much longer context lengths.
             Our approach lowers the peak activation memory usage in the attention layer by as much as <b>82.5%</b> for 70B Transformers, while matching previous context parallelism techniques in terms of training speed.
-            Untied Ulysses can support maximum context lengths of up to <b>5M</b> tokens for training 8B models on a single 8xH100 node, improving upon prior methods by <b>25%</b>.
+            UPipe can support maximum context lengths of up to <b>5M</b> tokens for training 8B models on a 8xH100 node, improving upon prior methods by <b>25%</b>.
           </p>
         </div>
       </div>
@@ -238,41 +225,232 @@
 <!-- End paper abstract -->
 
 
-<!-- Image carousel -->
+<!-- Motivation Figure -->
 <section class="hero is-small">
   <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Motivation</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <img src="static/images/intro_memory_stack.png" alt="Activation memory breakdown showing that attention dominates memory usage in long-context Transformer training." style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);" loading="lazy"/>
+          <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+            <b>Figure:</b> Activation memory breakdown for long-context Transformer training. Attention activations dominate the overall memory footprint, motivating the need for memory-efficient context parallelism.
+          </h2>
+        </div>
       </div>
-      <div class="item">
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
+    </div>
+  </div>
+</section>
+<!-- End motivation figure -->
+
+<!-- Method -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            Existing context parallelism approaches like DeepSpeed Ulysses distribute the sequence across devices and use All-to-All communication to exchange key-value pairs before computing full multi-head attention. While effective for scaling, these methods materialize all attention head activations simultaneously, leading to high peak memory usage that limits the maximum context length.
+          </p>
+          <p>
+            <b>Untied Ulysses</b> addresses this by performing fine-grained chunking at the attention head level. Instead of computing all heads at once, we process a subset of attention heads at a time, reusing QKV projection and All-to-All communication buffers across chunks. This simple modification dramatically reduces the peak activation memory in the attention layer without affecting the mathematical correctness of the computation or the final training throughput.
+          </p>
+        </div>
       </div>
-      <div class="item">
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
+    </div>
+    <div style="margin-top: 1rem;">
+      <img src="static/images/main_figure.png" alt="Untied Ulysses method overview: headwise chunking with buffer reuse." style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+        <b>Figure:</b> (a) DeepSpeed Ulysses performs All-to-All communication followed by full multi-head attention. (b) <b>Untied Ulysses</b> processes attention heads in fine-grained chunks, reusing QKV and communication buffers to drastically reduce peak activation memory.
       </h2>
     </div>
   </div>
-</div>
-</div>
 </section>
-<!-- End image carousel -->
+<!-- End method -->
 
+
+<!-- Results -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <div class="content has-text-justified">
+        <p>
+          We evaluate Untied Ulysses against several context parallelism baselines on two model families across a wide range of context lengths (128K&ndash;5M tokens) on a single 8&times;H100 node. Training throughput is reported in tokens per second. <b>Bold</b> values indicate the best result for each context length.
+        </p>
+      </div>
+
+      <!-- Llama3-8B Table -->
+      <div class="content">
+        <h3 class="title is-4" style="margin-bottom: 0.75rem;">Llama3-8B</h3>
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.95rem;">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>128K</th>
+                <th>256K</th>
+                <th>512K</th>
+                <th>1M</th>
+                <th>2M</th>
+                <th>3M</th>
+                <th>4M</th>
+                <th>5M</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Native PyTorch</td>
+                <td>1365.59</td>
+                <td>832.37</td>
+                <td>468.52</td>
+                <td>237.51</td>
+                <td>OOM</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>Ring</td>
+                <td>2008.26</td>
+                <td>1327.23</td>
+                <td>796.19</td>
+                <td>412.91</td>
+                <td>218.49</td>
+                <td>134.26</td>
+                <td>OOM</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>Ulysses</td>
+                <td><b>2252.83</b></td>
+                <td><b>1470.36</b></td>
+                <td><b>864.16</b></td>
+                <td><b>466.48</b></td>
+                <td>241.34</td>
+                <td>159.86</td>
+                <td>OOM</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>FPDT</td>
+                <td>1062.13</td>
+                <td>795.66</td>
+                <td>584.01</td>
+                <td>377.34</td>
+                <td>223.64</td>
+                <td>155.69</td>
+                <td>119.55</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr style="background-color: #eef6ff;">
+                <td><b>Untied Ulysses</b></td>
+                <td>2172.55</td>
+                <td>1434.05</td>
+                <td>850.97</td>
+                <td>462.07</td>
+                <td><b>242.75</b></td>
+                <td><b>164.39</b></td>
+                <td><b>124.10</b></td>
+                <td><b>98.25</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Qwen3-32B Table -->
+      <div class="content" style="margin-top: 2rem;">
+        <h3 class="title is-4" style="margin-bottom: 0.75rem;">Qwen3-32B</h3>
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.95rem;">
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>128K</th>
+                <th>256K</th>
+                <th>512K</th>
+                <th>1M</th>
+                <th>2M</th>
+                <th>3M</th>
+                <th>4M</th>
+                <th>5M</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Native PyTorch</td>
+                <td>201.48</td>
+                <td>150.69</td>
+                <td>89.96</td>
+                <td>OOCM</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>Ring</td>
+                <td><b>261.76</b></td>
+                <td>215.89</td>
+                <td>151.46</td>
+                <td>OOCM</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>Ulysses</td>
+                <td>258.80</td>
+                <td><b>231.41</b></td>
+                <td><b>159.92</b></td>
+                <td>OOCM</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>FPDT</td>
+                <td>158.64</td>
+                <td>139.09</td>
+                <td>114.48</td>
+                <td>OOCM</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr style="background-color: #eef6ff;">
+                <td><b>Untied Ulysses</b></td>
+                <td>258.44</td>
+                <td><b>230.84</b></td>
+                <td>157.28</td>
+                <td>OOCM</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="content has-text-justified" style="margin-top: 1.5rem;">
+        <p>
+          On <b>Llama3-8B</b>, Untied Ulysses matches the throughput of DeepSpeed Ulysses at shorter context lengths while being the <em>only</em> method that can scale to <b>5M tokens</b>&mdash;a 25% improvement over the next best method (FPDT at 4M). At 2M+ tokens, Untied Ulysses consistently achieves the highest throughput among all methods.
+        </p>
+        <p>
+          On the larger <b>Qwen3-32B</b> model, all methods hit the out-of-context-memory (OOCM) barrier at 1M tokens on a single node. Up to that point, Untied Ulysses remains competitive with Ulysses, both substantially outperforming Ring and FPDT.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End results -->
 
 
 <!-- Youtube video -->
@@ -296,7 +474,7 @@
 
 
 <!-- Video carousel -->
-<section class="hero is-small">
+<!-- <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">Another Carousel</h2>
@@ -319,12 +497,12 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End video carousel -->
 
 
 <!-- Paper poster -->
-<section class="hero is-small is-light">
+<!-- <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <h2 class="title">Poster</h2>
@@ -332,7 +510,7 @@
           </iframe>
       </div>
     </div>
-  </section>
+  </section> -->
 <!--End paper poster -->
 
 
@@ -347,11 +525,11 @@
           <span class="copy-text">Copy</span>
         </button>
       </div>
-      <pre id="bibtex-code"><code>@inproceedings{ghadia2025untied,
-  title={Untied Ulysses: Memory-Efficient Context Parallelism via Head-Level Chunking},
+      <pre id="bibtex-code"><code>@article{ghadia2026untied,
+  title={Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking},
   author={Ravi Ghadia and Maksim Abraham and Sergei Vorobyov and Max Ryabinin},
-  booktitle={International Conference on Machine Learning (ICML)},
-  year={2025}
+  booktitle={ArXiv 2026},
+  year={2026}
 }</code></pre>
     </div>
 </section>
