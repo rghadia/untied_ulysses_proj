@@ -144,7 +144,7 @@
             <h1 class="title is-1 publication-title">Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="#" target="_blank">Ravi Ghadia</a>,</span>
+                <a href="https://ghadiaravi13.github.io/" target="_blank">Ravi Ghadia</a>,</span>
               <span class="author-block">
                 <a href="#" target="_blank">Maksim Abraham</a>,</span>
               <span class="author-block">
@@ -232,6 +232,12 @@
       <h2 class="title is-3 has-text-centered">The Memory Wall</h2>
       <div class="columns is-centered">
         <div class="column is-four-fifths">
+          <p class="has-text-justified">The demand for training on longer sequences of data is growing rapidly, fueled by modern applications such as code-assistance and video-generation. However, training on very long sequences has a prohibitive memory cost, motivating the need for memory-efficient context parallelism. The figure below shows how the memory usage changes with different optimization techniques applied to a Llama3-8B model.</p>
+          <br>
+          <p class="has-text-justified">While techniques like FSDP helps lower the memory demand due to model parameters and the associated gradients, it does not address the activation memory footprint. DeepSpeed Ulysses is a context parallelism scheme that distributes the input sequence across 
+            multiple devices, helping lower the activation memory footprint. ALST addresses the activation memory for non-attention stages via tiling, but overlooks the attention stage. Thus, in our work, we present <b>UPipe</b>, which addresses the attention stage by performing fine-grained chunking at the attention head level.
+          </p>
+          <br>
           <img src="static/images/intro_memory_stack.png" alt="Activation memory breakdown showing that attention dominates memory usage in long-context Transformer training." style="width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);" loading="lazy"/>
           <h2 class="subtitle has-text-justified" style="margin-top: 1rem;">
             <!-- <b>Figure:</b>  -->
@@ -257,6 +263,9 @@
           </p>
           <p>
             <b>Untied Ulysses (UPipe)</b> addresses this by performing fine-grained chunking at the attention head level. Instead of computing all heads at once, we process a subset of attention heads at a time, reusing QKV projection and All-to-All communication buffers across chunks. This simple modification dramatically reduces the peak activation memory in the attention layer without affecting the mathematical correctness of the computation.
+          </p>
+          <p>
+            In the example depicted below for H = 4 heads, DeepSpeed Ulysses processes all 4 heads at once, thus requiring memory buffers for all 4 heads of QKV as well as the corresponding all-to-all buffers. UPipe, on the other hand, processes the heads in chunks of U = 2. Thus, it requires H/U = 2 stages to perform attention, where it reuses the memory buffers from the previous stage to store intermediate tensors in the later stages.
           </p>
         </div>
       </div>
@@ -303,7 +312,7 @@
       <h2 class="title is-3 has-text-centered">Results</h2>
       <div class="content has-text-justified">
         <p>
-          We evaluate Untied Ulysses against several context parallelism baselines on two model families across a wide range of context lengths (128K&ndash;5M tokens) on 8&times;H100 nodes. Training throughput is reported in tokens per second. <b>Bold</b> values indicate the best result for each context length.
+          We evaluate Untied Ulysses against several context parallelism baselines on two model families across a wide range of context lengths (128K&ndash;5M tokens) on 8&times;H100 nodes. Training throughput is reported in tokens per second per GPU. <b>Bold</b> values indicate the best result for each context length.
         </p>
       </div>
 
@@ -328,10 +337,10 @@
             <tbody>
               <tr>
                 <td>Native PyTorch</td>
-                <td>1365.59</td>
-                <td>832.37</td>
-                <td>468.52</td>
-                <td>237.51</td>
+                <td>1373.87</td>
+                <td>845.99</td>
+                <td>474.30</td>
+                <td>249.85</td>
                 <td>OOM</td>
                 <td>&mdash;</td>
                 <td>&mdash;</td>
@@ -339,46 +348,46 @@
               </tr>
               <tr>
                 <td>Ring</td>
-                <td>2008.26</td>
-                <td>1327.23</td>
-                <td>796.19</td>
-                <td>412.91</td>
-                <td>218.49</td>
-                <td>134.26</td>
+                <td>2064.90</td>
+                <td>1387.67</td>
+                <td>841.05</td>
+                <td>458.51</td>
+                <td>237.99</td>
+                <td>159.96</td>
                 <td>OOM</td>
                 <td>&mdash;</td>
               </tr>
               <tr>
                 <td>Ulysses</td>
-                <td><b>2252.83</b></td>
-                <td><b>1470.36</b></td>
-                <td><b>864.16</b></td>
-                <td><b>466.48</b></td>
-                <td>241.34</td>
-                <td>159.86</td>
+                <td><b>2320.47</b></td>
+                <td><b>1503.80</b></td>
+                <td><b>878.63</b></td>
+                <td><b>475.33</b></td>
+                <td>246.05</td>
+                <td>162.41</td>
                 <td>OOM</td>
                 <td>&mdash;</td>
               </tr>
               <tr>
                 <td>FPDT</td>
-                <td>1062.13</td>
-                <td>795.66</td>
-                <td>584.01</td>
-                <td>377.34</td>
-                <td>223.64</td>
-                <td>155.69</td>
-                <td>119.55</td>
+                <td>1171.68</td>
+                <td>884.75</td>
+                <td>621.20</td>
+                <td>382.42</td>
+                <td>219.53</td>
+                <td>153.48</td>
+                <td>119.76</td>
                 <td>&mdash;</td>
               </tr>
               <tr style="background-color: #eef6ff;">
                 <td><b>UPipe</b></td>
-                <td>2172.55</td>
-                <td>1434.05</td>
-                <td>850.97</td>
-                <td>462.07</td>
-                <td><b>242.75</b></td>
-                <td><b>164.39</b></td>
-                <td><b>124.10</b></td>
+                <td>2281.05</td>
+                <td>1487.29</td>
+                <td>867.17</td>
+                <td>472.53</td>
+                <td><b>246.07</b></td>
+                <td><b>166.32</b></td>
+                <td><b>125.56</b></td>
                 <td><b>98.25</b></td>
               </tr>
             </tbody>
@@ -407,10 +416,10 @@
             <tbody>
               <tr>
                 <td>Native PyTorch</td>
-                <td>201.48</td>
-                <td>150.69</td>
-                <td>89.96</td>
-                <td>OOCM</td>
+                <td>127.03</td>
+                <td>112.20</td>
+                <td>91.39</td>
+                <td>OOM</td>
                 <td>&mdash;</td>
                 <td>&mdash;</td>
                 <td>&mdash;</td>
@@ -418,47 +427,47 @@
               </tr>
               <tr>
                 <td>Ring</td>
-                <td><b>261.76</b></td>
-                <td>215.89</td>
-                <td>151.46</td>
-                <td>OOCM</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
+                <td>418.39</td>
+                <td>308.88</td>
+                <td>194.44</td>
+                <td>110.27</td>
+                <td>58.45</td>
+                <td>OOM</td>
                 <td>&mdash;</td>
                 <td>&mdash;</td>
               </tr>
               <tr>
                 <td>Ulysses</td>
-                <td>258.80</td>
-                <td><b>231.41</b></td>
-                <td><b>159.92</b></td>
-                <td>OOCM</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
+                <td><b>545.29</b></td>
+                <td><b>370.70</b></td>
+                <td><b>217.04</b></td>
+                <td><b>117.02</b></td>
+                <td><b>59.98</b></td>
+                <td>OOM</td>
                 <td>&mdash;</td>
                 <td>&mdash;</td>
               </tr>
               <tr>
                 <td>FPDT</td>
-                <td>158.64</td>
-                <td>139.09</td>
-                <td>114.48</td>
-                <td>OOCM</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
+                <td>286.40</td>
+                <td>217.85</td>
+                <td>151.91</td>
+                <td>95.88</td>
+                <td>55.41</td>
+                <td>38.86</td>
+                <td>27.66</td>
                 <td>&mdash;</td>
               </tr>
               <tr style="background-color: #eef6ff;">
                 <td><b>UPipe</b></td>
-                <td>258.44</td>
-                <td><b>230.84</b></td>
-                <td>157.28</td>
-                <td>OOCM</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
-                <td>&mdash;</td>
+                <td>483.29</td>
+                <td>339.56</td>
+                <td>204.46</td>
+                <td>113.26</td>
+                <td><b>59.56</b></td>
+                <td><b>40.42</b></td>
+                <td><b>29.97</b></td>
+                <td>OOM</td>
               </tr>
             </tbody>
           </table>
@@ -470,8 +479,27 @@
           On <b>Llama3-8B</b>, Untied Ulysses matches the throughput of DeepSpeed Ulysses at shorter context lengths while being the <em>only</em> method that can scale to <b>5M tokens</b>&mdash;a 25% improvement over the next best method (FPDT at 4M). At 2M+ tokens, Untied Ulysses consistently achieves the highest throughput among all methods.
         </p>
         <p>
-          On the larger <b>Qwen3-32B</b> model, all methods hit the out-of-context-memory (OOCM) barrier at 1M tokens on a single node. Up to that point, Untied Ulysses remains competitive with Ulysses, both substantially outperforming Ring and FPDT.
+          On the larger <b>Qwen3-32B</b> model, UPipe achieves on par performance with DeepSpeed Ulysses, while consistently outperforms FPDT at all context lengths. UPipe also achieve a 2&times; longer context length over DeepSpeed Ulysses.
         </p>
+      </div>
+
+      <div class="columns" style="margin-top: 2rem;">
+        <div class="column is-half">
+          <div class="content has-text-justified">
+            <h3 class="title is-4">Llama3-8B Multi-node (16&times;H100)</h3>
+            <p>
+              We evaluate the performance of UPipe using Llama3-8B on 16&times;H100 nodes. 
+              We use a hybrid context parallelism setup similar to USP-Hybrid, with <i>8-ulysses-2-ring</i>, ie, Ulysses degree of 8 within the node, and ring degree of 2 across nodes.
+            <!-- </p>
+            <p> -->
+              The figure on the right compares the training throughput and memory usage across methods as context length scales. 
+              UPipe consistently achieves throughput on par with DeepSpeed Ulysses, while using less memory. Further, UPipe is able to support a maximum context length of <b>8M tokens</b>, improving upon USP-Hybrid's 6M tokens by <b>33%</b>.
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <img src="static/images/multinode_mem.png" alt="Multi-node memory comparison across methods" style="width: 96%; padding-left: 4px; margin-top: 4.2rem;">
+        </div>
       </div>
     </div>
   </div>
