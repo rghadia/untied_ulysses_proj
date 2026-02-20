@@ -6,7 +6,7 @@
   
   <!-- Primary Meta Tags -->
   <meta name="title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
-  <meta name="description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.">
+  <meta name="description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 32B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.">
   <meta name="keywords" content="context parallelism, long sequences, Transformers, activation memory, distributed training, attention, Ring Attention, Ulysses, memory efficiency, large language models">
   <meta name="author" content="Ravi Ghadia, Maksim Abraham, Sergei Vorobyov, Max Ryabinin">
   <meta name="robots" content="index, follow">
@@ -16,7 +16,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Untied Ulysses">
   <meta property="og:title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
-  <meta property="og:description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.">
+  <meta property="og:description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 32B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.">
   <meta property="og:url" content="https://rghadia.github.io/untied_ulysses_proj">
   <meta property="og:image" content="https://rghadia.github.io/untied_ulysses_proj/static/images/main_figure.png">
   <meta property="og:image:width" content="2400">
@@ -31,7 +31,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking">
-  <meta name="twitter:description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.">
+  <meta name="twitter:description" content="Untied Ulysses reduces peak attention activation memory by up to 82.5% for 32B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.">
   <meta name="twitter:image" content="https://rghadia.github.io/untied_ulysses_proj/static/images/main_figure.png">
   <meta name="twitter:image:alt" content="Untied Ulysses - Main Figure">
 
@@ -96,7 +96,7 @@
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
     "headline": "Untied Ulysses: Memory-Efficient Context Parallelism via Headwise Chunking",
-    "description": "Untied Ulysses reduces peak attention activation memory by up to 82.5% for 70B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.",
+    "description": "Untied Ulysses reduces peak attention activation memory by up to 82.5% for 32B Transformers and supports context lengths up to 5M tokens on a single 8&times;H100 node.",
     "author": [
       {
         "@type": "Person",
@@ -123,7 +123,7 @@
     "url": "https://rghadia.github.io/untied_ulysses_proj",
     "image": "https://rghadia.github.io/untied_ulysses_proj/static/images/main_figure.png",
     "keywords": ["context parallelism", "long sequences", "Transformers", "activation memory", "distributed training"],
-    "abstract": "Efficiently processing long sequences with Transformer models usually requires splitting the computations across accelerators via context parallelism. The dominant approaches in this family of methods, such as Ring Attention or DeepSpeed Ulysses, enable scaling over the context dimension but do not focus on memory efficiency, which limits the sequence lengths they can support. More advanced techniques, such as Fully Pipelined Distributed Transformer or activation offloading, can further extend the possible context length at the cost of training throughput. In this paper, we present Upipe, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level. This technique significantly reduces the activation memory usage of self-attention, breaking the activation memory barrier and unlocking much longer context lengths. Our approach lowers the peak activation memory usage in the attention layer by as much as 82.5% for 70B Transformers, while matching previous context parallelism techniques in terms of training speed. Untied Ulysses can support maximum context lengths of up to 5M tokens for training 8B models on a single 8&times;H100 node, improving upon prior methods by 25%.",
+    "abstract": "Efficiently processing long sequences with Transformer models usually requires splitting the computations across accelerators via context parallelism. The dominant approaches in this family of methods, such as Ring Attention or DeepSpeed Ulysses, enable scaling over the context dimension but do not focus on memory efficiency, which limits the sequence lengths they can support. More advanced techniques, such as Fully Pipelined Distributed Transformer or activation offloading, can further extend the possible context length at the cost of training throughput. In this paper, we present Upipe, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level. This technique significantly reduces the activation memory usage of self-attention, breaking the activation memory barrier and unlocking much longer context lengths. Our approach lowers the peak activation memory usage in the attention layer by as much as 82.5% for 32B Transformers, while matching previous context parallelism techniques in terms of training speed. Untied Ulysses can support maximum context lengths of up to 5M tokens for training 8B models on a single 8&times;H100 node, improving upon prior methods by 25%.",
     "isAccessibleForFree": true
   }
   </script>
@@ -214,7 +214,7 @@
             More advanced techniques, such as Fully Pipelined Distributed Transformer or activation offloading, can further extend the possible context length at the cost of training throughput.
             In this paper, we present <b>Upipe</b>, a simple yet effective context parallelism technique that performs fine-grained chunking at the attention head level.
             This technique significantly reduces the activation memory usage of self-attention, breaking the activation memory barrier and unlocking much longer context lengths.
-            Our approach lowers the peak activation memory usage in the attention layer by as much as <b>82.5%</b> for 70B Transformers, while matching previous context parallelism techniques in terms of training speed.
+            Our approach lowers the peak activation memory usage in the attention layer by as much as <b>82.5%</b> for 32B Transformers, while matching previous context parallelism techniques in terms of training speed.
             UPipe can support maximum context lengths of up to <b>5M</b> tokens for training 8B models on a 8&times;H100 node, improving upon prior methods by <b>25%</b>.
           </p>
         </div>
